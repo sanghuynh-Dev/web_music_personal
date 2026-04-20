@@ -1,0 +1,157 @@
+.show {
+  display: block;
+}
+
+.container-upload {
+  margin: 0 10vw;
+  color: #fff;
+  font-size: 24px;
+}
+
+.container-upload h1 {
+  font-size: 28px;
+  letter-spacing: -1px;
+  margin: 40px 0;
+}
+
+.container-upload p {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.file-upload-btn {
+  width: 100%;
+  height: 400px;
+  margin-top: 32px;
+  padding: 12px 24px;
+  color: #fff;
+  border: 2px dashed #999;
+  cursor: pointer;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.icon-upload {
+  font-size: 50px;
+  margin-bottom: 20px;
+}
+
+.inside-upload-btn {
+  width: 154px;
+  height: 40px;
+  margin-top: 24px;
+  background-color: #fff;
+  border-radius: 20px;
+  color: #000000;
+  display: flex;
+  text-align: center;
+  align-items: center;
+}
+
+.inside-upload-btn:hover {
+  opacity: 0.7;
+}
+
+.inside-upload-btn p {
+  font-size: 14px;
+  flex: 1;
+}
+
+.image-upload-btn:hover,
+.upload-btn:hover {
+  border-color: #fff;
+}
+
+.music-upload-form {
+  margin-top: 42px;
+  display: none;
+}
+
+.container-upload-form {
+  display: flex;
+  text-align: center;
+  align-items: center;
+}
+
+.upload-image {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.preview-image {
+  display: none;
+  flex-direction: column;
+}
+
+.preview-image i {
+  margin-top: 12px;
+  color: #999;
+  display: inline-block;
+}
+
+.preview-image i:hover {
+  color: #fff;
+  cursor: pointer;
+}
+
+#preview {
+  width: 400px;
+  height: 450px;
+  object-fit: cover;
+  aspect-ratio: 1/1;
+}
+
+.upload-image,
+.upload-info {
+  flex: 1;
+  text-align: center;
+  align-items: center;
+}
+
+.upload-info {
+  flex: 2;
+  text-align: left;
+}
+
+.image-upload-form {
+  width: 400px;
+  height: 450px;
+  border: 2px dashed #999;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.form-group input {
+  font-size: 14px;
+  padding: 10px;
+  background: none;
+  font-weight: bold;
+  border: none;
+  border-bottom: 1px solid #999;
+  color: #fff;
+  outline: none;
+}
+
+.form-group input:focus {
+  border-bottom: 1px solid #fff;
+}

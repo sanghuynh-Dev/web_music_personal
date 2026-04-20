@@ -1,0 +1,77 @@
+<div id="player-bar">
+            <div class="container-player-bar">
+                <div class="playControls_elements">
+                    <button class="control-skip-backwardBtn playControl-edit playCtrl-fontSize-24"><i class="ti-control-skip-backward"></i></button>
+                    <div>
+                        <button class="control-playBtn cursor-pointer js-ctrl-playBtn">
+                            <svg class="icon-play" width="20" height="20" viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z"></path>
+                            </svg>
+
+                            <svg class="icon-pause"  width="20" height="20" viewBox="0 0 24 24">
+                                <path d="M6 5h4v14H6zm8 0h4v14h-4z"></path>
+                            </svg>
+                         </button>
+                    </div>
+                    <button class="control-skip-forwardBtn playControl-edit playCtrl-fontSize-24"><i class="ti-control-skip-forward"></i></button>
+                    <button class="control-shuffle-btn playControl-edit playCtrl-fontSize-14 cursor-pointer"><i class="ti-control-shuffle"></i></button>
+                    <button class="control-loop-btn playControl-edit playCtrl-fontSize-14 js-ctrl-loop cursor-pointer"><i class="ti-loop"></i></button>
+                    <div class="timeLine-timePasssed time-edit ">
+                        <span class="js-timePassed">0:00</span>
+                    </div>
+                    <div class="playcontrol-timeline cursor-pointer">
+                        <div class="timeLine-bar js-timeLine-bar"></div>
+                    </div>
+                    <div class="timeLine-durantion time-edit ">
+                        <span class="js-duration">2:52</span>
+                    </div>
+                    <div class="volume-control">
+                        <button class="control-volume-btn playControl-edit playCtrl-fontSize-14"><i class="ti-volume"></i></button>
+                        <div class="volume-box">
+                            <input type="range" class="volume-slider js-volume-slider" min="0" max="1" step="0.01">
+                        </div>
+                    </div>
+                </div>
+                <div class="info-song-current">
+                    <div class="song-card">
+                        <div class="container-thumbnail">
+                            <img src="./assets/imgs/9e4063c42264a18c4e72f4693aede94f.1000x1000x1.jpg" alt="" class="thumbnail-song">
+                        </div>
+                        <div class="song-info">
+                            <p class="artist-name shows-3-dots">Koseki Bijou</p>
+                            <a href="" class="song-name shows-3-dots">Prism no Mahouuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu</a>
+                            <audio class="js-audio"  src="./assets/music/KOSEKI BIJOUプリズムの魔法 - Prism no Mahou -Original Song MV.mp3" preload="metadata"></audio>                            
+                        </div>
+                        <div class="set-btn">
+                            <button class="thumbnail-like-btn cursor-pointer">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2">
+                                        <path d="M20.8 4.6c-1.5-1.5-4-1.5-5.5 0L12 7.9 8.7 4.6c-1.5-1.5-4-1.5-5.5 0s-1.5 4 0 5.5L12 21l8.8-10.9c1.5-1.5 1.5-4 0-5.5z"/>
+                                    </svg>
+                            </button>
+                            <button class="icon-follow-btn cursor-pointer">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1">
+                                    <!-- head -->
+                                    <circle cx="9" cy="8" r="4"></circle>
+
+                                    <!-- body -->
+                                    <path d="M2 20c0-4 3-7 7-7s7 3 7 7"></path>
+
+                                    <!-- plus -->
+                                    <line x1="18" y1="8" x2="18" y2="14"></line>
+                                    <line x1="15" y1="11" x2="21" y2="11"></line>
+                                </svg>
+                            </button>
+                            <button class="next-up-list cursor-pointer">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" stroke="currentColor" stroke-width="2">
+                                    <path class="triangle-icon" d="M1 7.5L4 9L1 10.5Z"></path>
+                                    <!-- lines -->
+                                    <path d="M9 4.25H15V3.75H9V4.25Z"></path>
+                                    <path d="M1 9.375H15V8.875H1V9.375Z"></path>
+                                    <path d="M15 14.25H1V13.75H15V14.25Z"></path>   
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>

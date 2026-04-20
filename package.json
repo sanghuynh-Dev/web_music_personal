@@ -1,0 +1,40 @@
+{
+  "name": "music_personal",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [
+    "web-music-personal",
+    "music"
+  ],
+  "homepage": "https://github.com/sanghuynh-Dev/web_music_personal#readme",
+  "bugs": {
+    "url": "https://github.com/sanghuynh-Dev/web_music_personal/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sanghuynh-Dev/web_music_personal.git"
+  },
+  "license": "ISC",
+  "author": "sanghuynh",
+  "type": "commonjs",
+  "main": "main.js",
+  "scripts": {
+    "start": "nodemon src/main.js",
+    "sass": "sass --watch src/resources/scss:src/public/css --no-source-map",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "cloudinary": "^1.41.3",
+    "express": "^5.2.1",
+    "express-handlebars": "^9.0.1",
+    "express-handlebars-sections": "^1.0.1",
+    "mongoose": "^9.4.1",
+    "multer": "^2.1.1",
+    "multer-storage-cloudinary": "^4.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14",
+    "prettier": "^3.8.2",
+    "sass": "^1.99.0"
+  }
+}

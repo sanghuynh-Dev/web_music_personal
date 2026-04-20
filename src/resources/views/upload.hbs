@@ -1,0 +1,86 @@
+{{#section 'css'}}
+<link rel="stylesheet" href="/css/upload.css">
+{{/section}}
+
+<div class="container-upload">
+    <div class="upload-file">
+        <h1>Upload your audio files.</h1>
+        <p>For optimal quality, use WAV, FLAC, AIFF, or ALAC formats.</p>
+        <label for="fileInput" class="file-upload-btn">
+            <i class="ti-upload icon-upload"></i>
+            <p>Drag and drop the audio file to begin.</p>
+            <div class="inside-upload-btn"><p>Choose your file</p></div>
+        </label>
+
+    </div>
+    <div class="music-upload-form">
+        <form method="post" action="/upload/uploaded" class="container-upload-form" autocomplete="off"  enctype="multipart/form-data">
+            <div class="upload-image">
+                <label for="inputImage" class="image-upload-form">
+                    <i class="ti-image icon-upload"></i>
+                     <p>Add new cover</p>
+                </label>
+                <input type="file" id="inputImage" name="image" hidden>
+                <div class="preview-image">
+                    <img id="preview">
+                    <div class="icon-trash">
+                        <i class="ti-trash ti-trash-js"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="upload-info">
+                <div class="form-group">
+                    <label for="song_name">Title name</label>
+                    <input type="text" id="song_name" name="song_name">
+                </div>
+                 <div class="form-group">
+                    <label for="artist">Artist</label>
+                    <input type="text" id="artist" name="artist">
+                </div>
+                <button type="submit">Upload</button>
+            </div>
+            <input type="file" id="fileInput" name="file" hidden>
+        </form>
+    </div>
+</div>
+
+<script>
+    const uploadfile = document.querySelector('.upload-file');
+    const musicUploadForm = document.querySelector('.music-upload-form');
+    const imageUploadForm = document.querySelector('.image-upload-form');
+    const previewImage = document.querySelector('.preview-image');
+    const iconTrash = document.querySelector('.ti-trash-js');
+    const inputImage = document.getElementById('inputImage');
+    const inputFile = document.getElementById('fileInput');
+    const songName = document.getElementById('song_name');
+    const preview = document.getElementById('preview');
+    
+
+    inputFile.addEventListener('change', function(event) {
+        const file = this.files[0];
+        if(!file) return;
+
+        uploadfile.style.display = 'none';
+        musicUploadForm.style.display = 'block';
+
+        songName.value = file.name.replace(/\.[^/.]+$/, '');
+    })
+
+    inputImage.addEventListener('change', function() {
+        const file = this.files[0];
+        if(!file) return;
+        const image = URL.createObjectURL(file);
+        preview.src = image;
+        imageUploadForm.style.display = 'none';
+        previewImage.style.display = 'flex';
+        console.log(inputFileForm.files.length);
+        console.log(inputImage.files.length);
+    })
+
+    iconTrash.addEventListener('click', function() {
+        previewImage.style.display = 'none';
+        imageUploadForm.style.display = 'flex';
+        inputImage.value = "";   // xoá file
+        preview.src = ""; 
+    })
+</script>
