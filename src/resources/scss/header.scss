@@ -1,0 +1,55 @@
+@import "variables";
+
+.option-user {
+    position: absolute;
+    top: 42px;
+    right: 171px;
+    box-shadow: 0 0 0 0.5px #ccc;
+    border-radius: 4px;
+    background: #000;
+    display: none;
+    align-items: center;
+    height: 165px;
+    z-index: 10;
+}
+
+.nav-user.active i {
+    color: #fff;
+}
+
+.option-user.active{
+    display: flex;
+}
+
+.option-user li {
+    list-style-type: none;
+    width: 155px;
+    padding: 9px 12px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+}
+
+.option-user li:hover,
+.option-user li:hover a{
+    color: #999;
+}
+
+.option-user li a{
+    color: #fff;
+    text-decoration: none;
+    font-weight: $font-weight-bold;
+    font-size: 14px;
+    letter-spacing: -0.5px;
+    margin-left: 5px;
+    flex: 1;
+    display: flex;
+    justify-content: left;
+}
+
+.option-user li .icon{
+    width: 24px;
+    height: 20px;
+}
+
