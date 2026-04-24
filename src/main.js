@@ -21,7 +21,7 @@ app.use(session({
 }));
 
 app.use((req, res, next) => {
-    console.log("SESSION GLOBAL:", req.session);
+    // console.log("SESSION GLOBAL:", req.session);
     res.locals.userID = req.session.userID || null;
     next();
 });
@@ -30,7 +30,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.engine('hbs', handlebars.engine({
   extname: '.hbs',
   helpers: {
-    section: sections()
+    section: sections(),
+    limited: (a, limit) => a < limit,
+    checkCount: (a) => a <= 0
   },
 }));
 app.set('view engine', 'hbs');

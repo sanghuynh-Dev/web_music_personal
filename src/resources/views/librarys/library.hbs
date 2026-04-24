@@ -1,0 +1,67 @@
+{{#section 'css'}}
+<link rel="stylesheet" href="/css/library.css">
+{{/section}}
+
+<div class="container-library">
+    <div class="nav-library">
+        <ul class="">
+            <li><a href="/you/library">Overview</a></li>
+            <li><a href="/you/likes">Likes</a></li>
+            <li><a href="">Following</a></li>
+            <li><a href="">History</a></li>
+        </ul>
+    </div>
+    <div class="library-content">
+        <div class="recently-played slider">
+            <h1 class="title-text">Recently played</h1>
+            <div class="list-recently-played margin-left-12 d-flex">
+                <div class="song-card js-song-card" data-index='${index}'>
+                    <div class="container-thumbnail">
+                        <a href=""><img src="https://res.cloudinary.com/dqynaodv1/image/upload/v1776544098/resources/images/1776544113769-maxresdefault%20%282%29.jpg.jpg" alt="" class="thumbnail-song"></a>
+                        <button class="thumbnail-play-btn cursor-pointer js-play-btn">
+                            <svg class="icon-play" width="40" height="40" viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z"></path>
+                            </svg>
+
+                            <svg class="icon-pause"  width="40" height="40" viewBox="0 0 24 24">
+                                <path d="M6 5h4v14H6zm8 0h4v14h-4z"></path>
+                            </svg>
+                        </button>
+                        <button class="icon-like-btn cursor-pointer">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2">
+                                <path d="M20.8 4.6c-1.5-1.5-4-1.5-5.5 0L12 7.9 8.7 4.6c-1.5-1.5-4-1.5-5.5 0s-1.5 4 0 5.5L12 21l8.8-10.9c1.5-1.5 1.5-4 0-5.5z"/>
+                            </svg>
+                        </button>
+                        
+                    </div>
+                    <a href="" class="song-name shows-3-dots">Don't Need Love</a>
+                    <p class="artist-name shows-3-dots">Starling</p>
+                    <audio class="js-audio"  src="{{this.file}}" preload="metadata"></audio>
+                </div>
+            </div>
+        </div>
+        <div class="likes slider">
+            <h1 class="title-text">Likes</h1>
+            <div class="list-likes margin-left-12 d-flex">
+                <div class="song-card js-song-card" data-index='${index}'>
+                    <div class="container-thumbnail">
+                        <a href=""><img src="https://res.cloudinary.com/dqynaodv1/image/upload/v1776544098/resources/images/1776544113769-maxresdefault%20%282%29.jpg.jpg" alt="" class="thumbnail-song"></a>
+                        <button class="thumbnail-play-btn cursor-pointer js-play-btn">
+                            <svg class="icon-play" width="40" height="40" viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z"></path>
+                            </svg>
+
+                            <svg class="icon-pause"  width="40" height="40" viewBox="0 0 24 24">
+                                <path d="M6 5h4v14H6zm8 0h4v14h-4z"></path>
+                            </svg>
+                        </button>
+                        
+                    </div>
+                    <a href="" class="song-name shows-3-dots">Don't Need Love</a>
+                    <p class="artist-name shows-3-dots">Starling</p>
+                    <audio class="js-audio"  src="{{this.file}}" preload="metadata"></audio>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

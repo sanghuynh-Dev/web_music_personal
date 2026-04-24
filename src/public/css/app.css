@@ -263,6 +263,10 @@ body {
   max-width: 160px;
 }
 
+.song-card {
+  margin-right: 32px;
+}
+
 .song-card .thumbnail-song {
   border-radius: 10px;
   max-width: 160px;
@@ -291,6 +295,27 @@ body {
   word-spacing: var(--word-spacing);
 }
 
+.icon-like-btn {
+  position: absolute;
+  top: 91%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: none;
+  border: none;
+  color: #000;
+  opacity: 0;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.liked {
+  color: red;
+}
+
+.icon-like-btn:hover {
+  opacity: 0.5;
+}
+
 .song-card .container-thumbnail {
   position: relative;
 }
@@ -314,7 +339,8 @@ body {
 }
 
 .content-right .song-card:hover .thumbnail-play-btn,
-.container-thumbnail:hover .thumbnail-play-btn {
+.container-thumbnail:hover .thumbnail-play-btn,
+.container-thumbnail:hover .icon-like-btn {
   opacity: 1;
   transform: translate(-50%, -50%) scale(1);
 }
@@ -408,7 +434,7 @@ body {
   color: #999;
 }
 
-.content-right .song-list {
+.content-right .list-liked {
   margin-top: 20px;
 }
 
@@ -700,5 +726,3 @@ body {
 .set-btn .triangle-icon {
   transform: translateY(-5px);
 }
-
-/*# sourceMappingURL=app.css.map */

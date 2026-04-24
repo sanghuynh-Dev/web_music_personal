@@ -29,7 +29,7 @@
                                 </div>
                                 <div class="track">
                                     {{#each musics}}
-                                     <div class="song-card js-song-card" data-index='${index}'>
+                                     <div class="song-card js-song-card" data-id="{{this._id}}">
                                         <div class="container-thumbnail">
                                             <a href=""><img src="{{this.image}}" alt="" class="thumbnail-song"></a>
                                             <button class="thumbnail-play-btn cursor-pointer js-play-btn">
@@ -41,7 +41,11 @@
                                                     <path d="M6 5h4v14H6zm8 0h4v14h-4z"></path>
                                                 </svg>
                                             </button>
-                                            
+                                            <button class="icon-like-btn cursor-pointer {{#if liked}} liked {{/if}}" data-id="{{this._id}}">
+                                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2">
+                                                    <path d="M20.8 4.6c-1.5-1.5-4-1.5-5.5 0L12 7.9 8.7 4.6c-1.5-1.5-4-1.5-5.5 0s-1.5 4 0 5.5L12 21l8.8-10.9c1.5-1.5 1.5-4 0-5.5z"/>
+                                                </svg>
+                                            </button>
                                         </div>
                                         <a href="" class="song-name shows-3-dots">{{this.song_name}}</a>
                                         <p class="artist-name shows-3-dots">{{this.artist}}</p>
@@ -63,134 +67,7 @@
                                     <button class="album-arrow-left center-item "><i class="ti-angle-left "></i></button>
                                 </div>
                                 <div class="track">
-                                    <div class="song-card">
-                                        <div class="container-thumbnail">
-                                            <a href=""><img src="./assets/imgs/channels4_profile.jpg" alt="" class="thumbnail-song"></a>
-                                            <button class="thumbnail-play-btn"><i class="ti-control-play icon-play"></i></button>
-                                        </div>
-                                        <a href="" class="song-name shows-3-dots">Gura gura gura gura gura gura</a>
-                                        <p class="artist-name shows-3-dots">Gura</p>
-                                    </div>
-                                    <div class="song-card">
-                                        <div class="container-thumbnail">
-                                            <a href=""><img src="./assets/imgs/channels4_profile.jpg" alt="" class="thumbnail-song"></a>
-                                            <button class="thumbnail-play-btn"><i class="ti-control-play icon-play"></i></button>
-                                        </div>
-                                        <a href="" class="song-name shows-3-dots">Gura gura gura gura gura gura</a>
-                                        <p class="artist-name shows-3-dots">Gura</p>
-                                    </div>
-                                    <div class="song-card">
-                                        <div class="container-thumbnail">
-                                            <a href=""><img src="./assets/imgs/channels4_profile.jpg" alt="" class="thumbnail-song"></a>
-                                            <button class="thumbnail-play-btn"><i class="ti-control-play icon-play"></i></button>
-                                        </div>
-                                        <a href="" class="song-name shows-3-dots">Gura gura gura gura gura gura</a>
-                                        <p class="artist-name shows-3-dots">Gura</p>
-                                    </div>
-                                    <div class="song-card">
-                                        <div class="container-thumbnail">
-                                            <a href=""><img src="./assets/imgs/channels4_profile.jpg" alt="" class="thumbnail-song"></a>
-                                            <button class="thumbnail-play-btn"><i class="ti-control-play icon-play"></i></button>
-                                        </div>
-                                        <a href="" class="song-name shows-3-dots">Gura gura gura gura gura gura</a>
-                                        <p class="artist-name shows-3-dots">Gura</p>
-                                    </div>
-                                    <div class="song-card">
-                                        <div class="container-thumbnail">
-                                            <a href=""><img src="./assets/imgs/channels4_profile.jpg" alt="" class="thumbnail-song"></a>
-                                            <button class="thumbnail-play-btn"><i class="ti-control-play icon-play"></i></button>
-                                        </div>
-                                        <a href="" class="song-name shows-3-dots">Gura gura gura gura gura gura</a>
-                                        <p class="artist-name shows-3-dots">Gura</p>
-                                    </div>
-                                    <div class="song-card">
-                                        <div class="container-thumbnail">
-                                            <a href=""><img src="./assets/imgs/channels4_profile.jpg" alt="" class="thumbnail-song"></a>
-                                            <button class="thumbnail-play-btn"><i class="ti-control-play icon-play"></i></button>
-                                        </div>
-                                        <a href="" class="song-name shows-3-dots">Gura gura gura gura gura gura</a>
-                                        <p class="artist-name shows-3-dots">Gura</p>
-                                    </div>
-                                     <div class="song-card">
-                                        <div class="container-thumbnail">
-                                            <a href=""><img src="./assets/imgs/channels4_profile.jpg" alt="" class="thumbnail-song"></a>
-                                            <button class="thumbnail-play-btn"><i class="ti-control-play icon-play"></i></button>
-                                        </div>
-                                        <a href="" class="song-name shows-3-dots">Gura gura gura gura gura gura</a>
-                                        <p class="artist-name shows-3-dots">Gura</p>
-                                    </div>
-                                     <div class="song-card">
-                                        <div class="container-thumbnail">
-                                            <a href=""><img src="./assets/imgs/channels4_profile.jpg" alt="" class="thumbnail-song"></a>
-                                            <button class="thumbnail-play-btn"><i class="ti-control-play icon-play"></i></button>
-                                        </div>
-                                        <a href="" class="song-name shows-3-dots">Gura gura gura gura gura gura</a>
-                                        <p class="artist-name shows-3-dots">Gura</p>
-                                    </div>
-                                     <div class="song-card">
-                                        <div class="container-thumbnail">
-                                            <a href=""><img src="./assets/imgs/channels4_profile.jpg" alt="" class="thumbnail-song"></a>
-                                            <button class="thumbnail-play-btn"><i class="ti-control-play icon-play"></i></button>
-                                        </div>
-                                        <a href="" class="song-name shows-3-dots">Gura gura gura gura gura gura</a>
-                                        <p class="artist-name shows-3-dots">Gura</p>
-                                    </div>
-                                     <div class="song-card">
-                                        <div class="container-thumbnail">
-                                            <a href=""><img src="./assets/imgs/channels4_profile.jpg" alt="" class="thumbnail-song"></a>
-                                            <button class="thumbnail-play-btn"><i class="ti-control-play icon-play"></i></button>
-                                        </div>
-                                        <a href="" class="song-name shows-3-dots">Gura gura gura gura gura gura</a>
-                                        <p class="artist-name shows-3-dots">Gura</p>
-                                    </div>
-                                     <div class="song-card">
-                                        <div class="container-thumbnail">
-                                            <a href=""><img src="./assets/imgs/channels4_profile.jpg" alt="" class="thumbnail-song"></a>
-                                            <button class="thumbnail-play-btn"><i class="ti-control-play icon-play"></i></button>
-                                        </div>
-                                        <a href="" class="song-name shows-3-dots">Gura gura gura gura gura gura</a>
-                                        <p class="artist-name shows-3-dots">Gura</p>
-                                    </div>
-                                       <div class="song-card">
-                                        <div class="container-thumbnail">
-                                            <a href=""><img src="./assets/imgs/channels4_profile.jpg" alt="" class="thumbnail-song"></a>
-                                            <button class="thumbnail-play-btn"><i class="ti-control-play icon-play"></i></button>
-                                        </div>
-                                        <a href="" class="song-name shows-3-dots">Gura gura gura gura gura gura</a>
-                                        <p class="artist-name shows-3-dots">Gura</p>
-                                    </div>
-                                       <div class="song-card">
-                                        <div class="container-thumbnail">
-                                            <a href=""><img src="./assets/imgs/channels4_profile.jpg" alt="" class="thumbnail-song"></a>
-                                            <button class="thumbnail-play-btn"><i class="ti-control-play icon-play"></i></button>
-                                        </div>
-                                        <a href="" class="song-name shows-3-dots">Gura gura gura gura gura gura</a>
-                                        <p class="artist-name shows-3-dots">Gura</p>
-                                    </div>
-                                       <div class="song-card">
-                                        <div class="container-thumbnail">
-                                            <a href=""><img src="./assets/imgs/channels4_profile.jpg" alt="" class="thumbnail-song"></a>
-                                            <button class="thumbnail-play-btn"><i class="ti-control-play icon-play"></i></button>
-                                        </div>
-                                        <a href="" class="song-name shows-3-dots">Gura gura gura gura gura gura</a>
-                                        <p class="artist-name shows-3-dots">Gura</p>
-                                    </div>
-                                       <div class="song-card">
-                                        <div class="container-thumbnail">
-                                            <a href=""><img src="./assets/imgs/channels4_profile.jpg" alt="" class="thumbnail-song"></a>
-                                            <button class="thumbnail-play-btn"><i class="ti-control-play icon-play"></i></button>
-                                        </div>
-                                        <a href="" class="song-name shows-3-dots">Gura gura gura gura gura gura</a>
-                                        <p class="artist-name shows-3-dots">Gura</p>
-                                    </div>
-                                       <div class="song-card">
-                                        <div class="container-thumbnail">
-                                            <a href=""><img src="./assets/imgs/channels4_profile.jpg" alt="" class="thumbnail-song"></a>
-                                            <button class="thumbnail-play-btn"><i class="ti-control-play icon-play"></i></button>
-                                        </div>
-                                        <a href="" class="song-name shows-3-dots">Gura gura gura gura gura gura</a>
-                                        <p class="artist-name shows-3-dots">Gura</p>
-                                    </div>
+                                   
                                 </div>
                                 <div class="container-arrow">
                                     <button class="album-arrow-right center-item "><i class="ti-angle-right "></i></button>
@@ -279,143 +156,57 @@
                             </div>
                         </div>
                         <div class="song-like-list">
-                            <h2 class="title-content-r">15 likes</h2>
-                            <div class="song-list">
-                                <div class="song-card">
-                                    <div class="container-thumbnail">
-                                        <div class="control-btn">
-                                            <img src="./assets/imgs/9e4063c42264a18c4e72f4693aede94f.1000x1000x1.jpg" alt="" class="thumbnail-song">
-                                            <button class="thumbnail-play-btn cursor-pointer js-play-btn">
-                                                <svg class="icon-play" width="40" height="40" viewBox="0 0 24 24">
-                                                    <path d="M8 5v14l11-7z"></path>
-                                                </svg>
-        
-                                                <svg class="icon-pause"  width="40" height="40" viewBox="0 0 24 24">
-                                                    <path d="M6 5h4v14H6zm8 0h4v14h-4z"></path>
-                                                </svg>
-                                            </button>
-                                            
-                                        </div>
-                                    </div>
-                                    <div class="song-info">
-                                        <p class="artist-name shows-3-dots">Koseki Bijou</p>
-                                        <a href="" class="song-name shows-3-dots">Prism no Mahou</a>
-                                        <audio class="js-audio"  src="./assets/music/KOSEKI BIJOUプリズムの魔法 - Prism no Mahou -Original Song MV.mp3" preload="metadata"></audio>
-                                       <div class="song-stats">
-                                            <span class="play">
-                                                <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                                                    <path d="M8 5v14l11-7z"/>
-                                                </svg>
-                                                2,086
-                                            </span>
+                            <h2 class="title-content-r title-liked-js">{{ count }} likes</h2>
+                            <div class="list-liked">
+                                {{#each likedMusics}}
+                                    {{#if (limited @index 3)}}
+                                        <div class="song-card js-song-card" data-id="{{this._id}}">
+                                            <div class="container-thumbnail">
+                                                <div class="control-btn">
+                                                    <img src="{{this.image}}" alt="" class="thumbnail-song">
+                                                    <button class="thumbnail-play-btn cursor-pointer js-play-btn">
+                                                        <svg class="icon-play" width="40" height="40" viewBox="0 0 24 24">
+                                                            <path d="M8 5v14l11-7z"></path>
+                                                        </svg>
+                
+                                                        <svg class="icon-pause"  width="40" height="40" viewBox="0 0 24 24">
+                                                            <path d="M6 5h4v14H6zm8 0h4v14h-4z"></path>
+                                                        </svg>
+                                                    </button>
+                                                    
+                                                </div>
+                                            </div>
+                                            <div class="song-info">
+                                                <p class="artist-name shows-3-dots">{{this.artist}}</p>
+                                                <a href="" class="song-name shows-3-dots">{{this.song_name}}</a>
+                                                <audio class="js-audio"  src="{{this.file}}" preload="metadata"></audio>
+                                            <div class="song-stats">
+                                                    <span class="play">
+                                                        <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                                            <path d="M8 5v14l11-7z"/>
+                                                        </svg>
+                                                        2,086
+                                                    </span>
 
-                                            <span class="likes">
-                                                <svg class="icon" width="13" height="13" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2">
-                                                    <path d="M20.8 4.6c-1.5-1.5-4-1.5-5.5 0L12 7.9 8.7 4.6c-1.5-1.5-4-1.5-5.5 0s-1.5 4 0 5.5L12 21l8.8-10.9c1.5-1.5 1.5-4 0-5.5z"/>
-                                                </svg>
-                                                64
-                                            </span>
+                                                    <span class="likes">
+                                                        <svg class="icon" width="13" height="13" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2">
+                                                            <path d="M20.8 4.6c-1.5-1.5-4-1.5-5.5 0L12 7.9 8.7 4.6c-1.5-1.5-4-1.5-5.5 0s-1.5 4 0 5.5L12 21l8.8-10.9c1.5-1.5 1.5-4 0-5.5z"/>
+                                                        </svg>
+                                                        64
+                                                    </span>
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="like-btn">
+                                                <button class="thumbnail-like-btn cursor-point">
+                                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2">
+                                                            <path d="M20.8 4.6c-1.5-1.5-4-1.5-5.5 0L12 7.9 8.7 4.6c-1.5-1.5-4-1.5-5.5 0s-1.5 4 0 5.5L12 21l8.8-10.9c1.5-1.5 1.5-4 0-5.5z"/>
+                                                        </svg>
+                                                </button>
+                                            </div>
                                         </div>
-                                        
-                                    </div>
-                                    <div class="like-btn">
-                                        <button class="thumbnail-like-btn cursor-point">
-                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2">
-                                                    <path d="M20.8 4.6c-1.5-1.5-4-1.5-5.5 0L12 7.9 8.7 4.6c-1.5-1.5-4-1.5-5.5 0s-1.5 4 0 5.5L12 21l8.8-10.9c1.5-1.5 1.5-4 0-5.5z"/>
-                                                </svg>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="song-card">
-                                    <div class="container-thumbnail">
-                                        <div class="control-btn">
-                                            <img src="./assets/imgs/9e4063c42264a18c4e72f4693aede94f.1000x1000x1.jpg" alt="" class="thumbnail-song">
-                                            <button class="thumbnail-play-btn cursor-pointer js-play-btn">
-                                                <svg class="icon-play" width="40" height="40" viewBox="0 0 24 24">
-                                                    <path d="M8 5v14l11-7z"></path>
-                                                </svg>
-        
-                                                <svg class="icon-pause"  width="40" height="40" viewBox="0 0 24 24">
-                                                    <path d="M6 5h4v14H6zm8 0h4v14h-4z"></path>
-                                                </svg>
-                                            </button>
-                                            
-                                        </div>
-                                    </div>
-                                    <div class="song-info">
-                                        <p class="artist-name shows-3-dots">Koseki Bijou</p>
-                                        <a href="" class="song-name shows-3-dots">Prism no Mahou</a>
-                                        <audio class="js-audio"  src="./assets/music/KOSEKI BIJOUプリズムの魔法 - Prism no Mahou -Original Song MV.mp3" preload="metadata"></audio>
-                                       <div class="song-stats">
-                                            <span class="play">
-                                                <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                                                    <path d="M8 5v14l11-7z"/>
-                                                </svg>
-                                                2,086
-                                            </span>
-
-                                            <span class="likes">
-                                                <svg class="icon" width="13" height="13" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2">
-                                                    <path d="M20.8 4.6c-1.5-1.5-4-1.5-5.5 0L12 7.9 8.7 4.6c-1.5-1.5-4-1.5-5.5 0s-1.5 4 0 5.5L12 21l8.8-10.9c1.5-1.5 1.5-4 0-5.5z"/>
-                                                </svg>
-                                                64
-                                            </span>
-                                        </div>
-                                        
-                                    </div>
-                                    <div class="like-btn">
-                                        <button class="thumbnail-like-btn cursor-point">
-                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2">
-                                                    <path d="M20.8 4.6c-1.5-1.5-4-1.5-5.5 0L12 7.9 8.7 4.6c-1.5-1.5-4-1.5-5.5 0s-1.5 4 0 5.5L12 21l8.8-10.9c1.5-1.5 1.5-4 0-5.5z"/>
-                                                </svg>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="song-card">
-                                    <div class="container-thumbnail">
-                                        <div class="control-btn">
-                                            <img src="./assets/imgs/9e4063c42264a18c4e72f4693aede94f.1000x1000x1.jpg" alt="" class="thumbnail-song">
-                                            <button class="thumbnail-play-btn cursor-pointer js-play-btn">
-                                                <svg class="icon-play" width="40" height="40" viewBox="0 0 24 24">
-                                                    <path d="M8 5v14l11-7z"></path>
-                                                </svg>
-        
-                                                <svg class="icon-pause"  width="40" height="40" viewBox="0 0 24 24">
-                                                    <path d="M6 5h4v14H6zm8 0h4v14h-4z"></path>
-                                                </svg>
-                                            </button>
-                                            
-                                        </div>
-                                    </div>
-                                    <div class="song-info">
-                                        <p class="artist-name shows-3-dots">Koseki Bijou</p>
-                                        <a href="" class="song-name shows-3-dots">Prism no Mahou</a>
-                                        <audio class="js-audio"  src="./assets/music/KOSEKI BIJOUプリズムの魔法 - Prism no Mahou -Original Song MV.mp3" preload="metadata"></audio>
-                                       <div class="song-stats">
-                                            <span class="play">
-                                                <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                                                    <path d="M8 5v14l11-7z"/>
-                                                </svg>
-                                                2,086
-                                            </span>
-
-                                            <span class="likes">
-                                                <svg class="icon" width="13" height="13" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2">
-                                                    <path d="M20.8 4.6c-1.5-1.5-4-1.5-5.5 0L12 7.9 8.7 4.6c-1.5-1.5-4-1.5-5.5 0s-1.5 4 0 5.5L12 21l8.8-10.9c1.5-1.5 1.5-4 0-5.5z"/>
-                                                </svg>
-                                                64
-                                            </span>
-                                        </div>
-                                        
-                                    </div>
-                                    <div class="like-btn">
-                                        <button class="thumbnail-like-btn cursor-point">
-                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2">
-                                                    <path d="M20.8 4.6c-1.5-1.5-4-1.5-5.5 0L12 7.9 8.7 4.6c-1.5-1.5-4-1.5-5.5 0s-1.5 4 0 5.5L12 21l8.8-10.9c1.5-1.5 1.5-4 0-5.5z"/>
-                                                </svg>
-                                        </button>
-                                    </div>
-                                </div>
+                                    {{/if}}
+                                {{/each}}
                             </div>
                         </div>
                         <div class="song-history">

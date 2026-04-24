@@ -52,37 +52,51 @@ const timePassed = document.querySelector('.js-timePassed');
 const duration = document.querySelector('.js-duration');
 const timeLine = document.querySelector('.js-timeLine-bar');
 // const audio = document.getElementById('audio');
-const songCards = document.querySelectorAll('.js-song-card');
+
 const playBtn = document.querySelector('.js-ctrl-playBtn');
+const songCards = document.querySelectorAll('.js-song-card');
+
+console.log(songCards)
 
 
 
 let currentAudio = null;
 let currentSongBtn = null;
 let isLoop = false;
+let currentSongID = null;
 songCards.forEach(songCard => {
     
     const audio = songCard.querySelector('.js-audio');
+    const songID = songCard.dataset.id;
     const songCardPlayBtn = songCard.querySelector('.js-play-btn');
-
+    
     songCardPlayBtn.addEventListener('click', () => {
-        if (currentAudio && currentAudio == audio){
-            changeIconPlay(playBtn);
+        if (currentSongID === songID){
+            if (currentAudio.paused) {
+                currentAudio.play();
+                changeIconPlay(playBtn,songID, true);
+            } else {
+                currentAudio.pause();
+                changeIconPlay(playBtn ,songID, false);
+            }
             return;  
         } 
-        if (currentAudio && currentAudio !== audio) {
+
+        if(currentSongID && currentSongID !== songID) {
             currentAudio.pause();
-            audio.currentTime = 0;
-            if(currentSongBtn) currentSongBtn.classList.remove('playing');
+            currentAudio.currentTime = 0;
+            changeIconPlay(playBtn, currentSongID, false);
         }
+        
+
         audio.play();
+        currentSongID = songID;
         currentAudio = audio;
         currentSongBtn = songCardPlayBtn;
         setVolume(currentAudio);
         loadDurationSong(currentAudio);
         isLoopSong()
-        songCardPlayBtn.classList.add('playing');
-        playBtn.classList.add('playing');
+        changeIconPlay(playBtn, songID, true);
     })
     volume.oninput = () => {
         setVolume(currentAudio);
@@ -103,22 +117,29 @@ songCards.forEach(songCard => {
     
         timeLine.style.width = percent + '%';
     }   
-    console.log(audio)     
+    // console.log(audio)     
 })
 
 playBtn.onclick = () => {
     changeIconPlay(playBtn);
 };
 
-function changeIconPlay(btn) {
-     if(currentAudio.paused){
-        currentAudio.play();
+function changeIconPlay(btn, songID, isPlaying) {
+
+    const songCards = document.querySelectorAll(`.song-card[data-id="${songID}"]`);
+    console.log(songCards)
+    if(isPlaying) {
+        songCards.forEach(songCard => {
+            const songCardPlayBtn = songCard.querySelector('.js-play-btn');
+            songCardPlayBtn.classList.add('playing');
+        })
         btn.classList.add('playing');
-        if(currentSongBtn) currentSongBtn.classList.add('playing');
     } else {
-        currentAudio.pause();
+        songCards.forEach(songCard => {
+            const songCardPlayBtn = songCard.querySelector('.js-play-btn');
+            songCardPlayBtn.classList.remove('playing');
+        })
         btn.classList.remove('playing');
-        if(currentSongBtn) currentSongBtn.classList.remove('playing');
     }
 }
 

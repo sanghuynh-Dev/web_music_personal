@@ -47,19 +47,19 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         const data = await res.json();
-        console.log(data);
+        // console.log(data);
 
         document.getElementById('error-email').innerHTML = '';
         document.getElementById('error-password').innerHTML = '';
         if (!data.success) {
             if (data.error?.email) {
                 document.getElementById('error-email').innerHTML = data.error.email;
-                console.log(data.errors.email);
+                // console.log(data.errors.email);
             }
 
             if (data.error?.password) {
                 document.getElementById('error-password').innerHTML = data.error.password;
-                console.log(data.errors.password);
+                // console.log(data.errors.password);
             }
         } else {
             setTimeout(() => {
