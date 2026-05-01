@@ -1,0 +1,59 @@
+{{#section 'css'}}
+<link rel="stylesheet" href="/css/library.css">
+{{/section}}
+
+<div class="container-library">
+    <div class="nav-library">
+        <ul class="">
+            <li><a href="/you/library">Overview</a></li>
+            <li><a href="/you/likes">Likes</a></li>
+            <li><a href="/you/following">Following</a></li>
+            <li><a href="">History</a></li>
+        </ul>
+    </div>
+    <div class="library-content">
+        <div class="following-container">
+            <h1 class="title-text">Hear what the people you follow have posted:</h1>
+            <div class="list-following">
+                {{#each followings}}
+                    <div class="following-item">
+                        {{#if this.avatar.url}}
+                            <img class="header-avatar-user" src="{{this.avatar.url}}" alt="">
+                        {{else}}
+                            {{!-- {{log user.username}} --}}
+                            <img class="preview-header-avatar-user" src="{{this.avatar.url}}" alt="">
+
+                            <div class="header-avatar-fallback"
+                                style="background: {{avatarColor this.username}};">
+                                <h1 class="first-char-header">
+                                    {{firstChar this.username}}
+                                </h1>
+                            </div>
+                        {{/if}}
+                        <div class="following-info">
+                            <div class="user-name">
+                                <a href="">{{this.username}}</a>
+                            </div>
+                            <div class="count-followers">
+                                <div class="icon">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                        <!-- đầu -->
+                                        <circle cx="12" cy="7" r="4"/>
+                                        
+                                        <!-- body -->
+                                        <path d="M4 20c0-4 4-6 8-6s8 2 8 6"/>
+                                    </svg>
+                                </div>
+                                <span>{{this.followersCount}}</span>
+                                <p>Followers</p>
+                            </div>
+                            <button class="follow-btn">following</button>
+                        </div>
+                    </div>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="module" src="/javascripts/app.js"></script>

@@ -153,28 +153,6 @@ body {
   color: #fff;
 }
 
-.nav-user {
-  display: flex;
-  align-items: center;
-  text-align: center;
-}
-
-.nav-user .user-avatar {
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  margin-left: 16px;
-}
-
-.nav-user i {
-  color: var(--color-Gray);
-  margin-left: 12px;
-}
-
-.nav-user:hover i {
-  color: #fff;
-}
-
 /*========================================================================== content left================================================*/
 #content .container {
   margin: var(--two-edges);
@@ -381,11 +359,23 @@ body {
   margin-bottom: 20px;
 }
 
-.userBadge-img {
+.avatar-fallback,
+.userBadge img {
   border-radius: 50%;
   width: 48px;
   height: 48px;
   margin-right: 16px;
+  position: relative;
+}
+
+.first-char {
+  font-size: 35px;
+  position: absolute;
+  font-weight: normal;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
 }
 
 .userBadge-content {
@@ -399,6 +389,10 @@ body {
   font-size: 13px;
 }
 
+.userBadge-content .userName:hover {
+  filter: brightness(0.7);
+}
+
 .userBadge-stats {
   display: flex;
   margin-top: 5px;
@@ -409,6 +403,12 @@ body {
   display: flex;
   align-items: center;
   margin-right: 20px;
+}
+
+.userBadge-stats .userBadge-tracks:hover,
+.userBadge-stats .userBadge-followers:hover {
+  cursor: pointer;
+  filter: brightness(0.7);
 }
 
 .userBadge-followers .followers-count,

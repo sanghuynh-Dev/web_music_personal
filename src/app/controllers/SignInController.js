@@ -16,6 +16,7 @@ class SignIncontroller {
         if(user.password !== password) return res.json({ success: false, error:{ password: 'Password is not correct!'}});
 
         req.session.userID = user._id;
+        req.session.user = user;
         res.json({ success: true });
     }
 }

@@ -21,4 +21,9 @@ const likeSchema = new Schema({
     timestamps: true,
 });
 
+likeSchema.index(
+  { user: 1, target: 1, targetType: 1 },
+  { unique: true }
+);
+
 module.exports = mongoose.model('Likes', likeSchema);

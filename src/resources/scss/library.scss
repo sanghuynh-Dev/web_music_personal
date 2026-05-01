@@ -37,6 +37,16 @@
 
 .library-content {
     margin: 32px 10px;
+    color: $text-white;
+}
+
+.song-card .container-thumbnail {
+    position: relative;
+}
+
+.container-thumbnail:hover .icon-like-btn{
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
 }
 
 .title-text {
@@ -46,7 +56,18 @@
     margin-bottom: 32px;
 }
 
-
+.icon-like-btn {
+    position: absolute;
+    top: 91%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: none;
+    border: none;
+    color: red;
+    opacity: 0;
+    transition: 0.3s;
+    cursor: pointer;
+}
 
 .library-content .slider {
     margin-bottom: 24px;
@@ -59,4 +80,64 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+// --------------------- following --------------------- //
+
+.following-item {
+    display: inline-flex;
+    flex-direction: column;
+    margin-right: 20px;
+}
+
+.following-item img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.following-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 12px;
+}
+
+.user-name a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 16px;
+}
+
+.user-name:hover a {
+    color: #999;
+}
+
+.count-followers {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    font-weight: normal;
+    color: #999;
+    margin-top: 2px;
+    margin-bottom: 12px;
+}
+
+.count-followers span {
+    margin-right: 3px;
+}
+.follow-btn {
+    padding: 8px 13px;
+    border-radius: 4px;
+    border: none;
+    font-weight: $font-weight-bold;
+    opacity: 0;
+    cursor: pointer;
+    transition: ease 0.3s;
+}
+
+.following-item:hover .follow-btn {
+    opacity: 1;
 }

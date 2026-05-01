@@ -41,7 +41,7 @@
                                                     <path d="M6 5h4v14H6zm8 0h4v14h-4z"></path>
                                                 </svg>
                                             </button>
-                                            <button class="icon-like-btn cursor-pointer {{#if liked}} liked {{/if}}" data-id="{{this._id}}">
+                                            <button class="icon-like-btn icon-like-btn-js cursor-pointer {{#if liked}} liked {{/if}}" data-id="{{this._id}}">
                                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2">
                                                     <path d="M20.8 4.6c-1.5-1.5-4-1.5-5.5 0L12 7.9 8.7 4.6c-1.5-1.5-4-1.5-5.5 0s-1.5 4 0 5.5L12 21l8.8-10.9c1.5-1.5 1.5-4 0-5.5z"/>
                                                 </svg>
@@ -81,78 +81,47 @@
                         <div class="user-follow-list">
                             <h2 class="title-content-r">Artists you should follow</h2>
                             <div class="list-user">
-                                <div class="userBadge">
-                                    <img class="userBadge-img" src="./assets/imgs/channels4_profile.jpg" alt="">
-                                    <div class="userBadge-content">
-                                        <a href="" class="userName">Gawr Gura</a>
-                                        <div class="userBadge-stats">
-                                            <div class="userBadge-followers">
-                                                <svg class="icon" width="16" height="16" viewBox="0 0 24 24">
-                                                    <path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-4.3 0-8 2.2-8 5v3h16v-3c0-2.8-3.7-5-8-5z"/>
-                                                </svg>
-                                                <span class="followers-count">720</span>
+                                {{#each users}}
+                                    {{#if (limited @index 3)}}
+                                    <div class="userBadge user-badge-js">
+                                        {{!-- <img class="userBadge-img" src="{{this.avatar.url}}" alt=""> --}}
+                                        {{#if this.avatar.url}}
+                                            <img class="main-avatar-user" src="{{this.avatar.url}}" alt="">
+                                        {{else}}
+                                            {{log this.username}}
+                                            <img class="preview-main-avatar-user" src="{{this.avatar.url}}" alt="">
+
+                                            <div class="avatar-fallback"
+                                                style="background-color: {{avatarColor this.username}};">
+                                                <h1 class="first-char">
+                                                    {{firstChar this.username}}
+                                                </h1>
                                             </div>
-                                            <div class="userBadge-tracks">
-                                                 <svg class="icon" width="14" height="14" viewBox="0 0 16 16">
-                                                    <rect x="1" y="4" width="2" height="8"/>
-                                                    <rect x="5" y="0" width="2" height="16"/>
-                                                    <rect x="9" y="3" width="2" height="10"/>
-                                                    <rect x="13" y="5" width="2" height="6"/>
-                                                </svg>
-                                                <span class="track-count">13</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <button class="follow-btn cursor-pointer">Follow</button>
-                                </div>
-                                <div class="userBadge">
-                                    <img class="userBadge-img" src="./assets/imgs/channels4_profile.jpg" alt="">
-                                    <div class="userBadge-content">
-                                        <a href="" class="userName">Gura</a>
-                                        <div class="userBadge-stats">
-                                            <div class="userBadge-followers">
-                                                <svg class="icon" width="16" height="16" viewBox="0 0 24 24">
-                                                    <path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-4.3 0-8 2.2-8 5v3h16v-3c0-2.8-3.7-5-8-5z"/>
-                                                </svg>
-                                                <span class="followers-count">720</span>
-                                            </div>
-                                            <div class="userBadge-tracks">
-                                                 <svg class="icon" width="14" height="14" viewBox="0 0 16 16">
-                                                    <rect x="1" y="4" width="2" height="8"/>
-                                                    <rect x="5" y="0" width="2" height="16"/>
-                                                    <rect x="9" y="3" width="2" height="10"/>
-                                                    <rect x="13" y="5" width="2" height="6"/>
-                                                </svg>
-                                                <span class="track-count">13</span>
+                                        {{/if}}
+                                        <div class="userBadge-content">
+                                            <a href="" class="userName">{{this.username}}</a>
+                                            <div class="userBadge-stats">
+                                                <div class="userBadge-followers">
+                                                    <svg class="icon" width="16" height="16" viewBox="0 0 24 24">
+                                                        <path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-4.3 0-8 2.2-8 5v3h16v-3c0-2.8-3.7-5-8-5z"/>
+                                                    </svg>
+                                                    <span class="followers-count">720</span>
+                                                </div>
+                                                <div class="userBadge-tracks">
+                                                    <svg class="icon" width="14" height="14" viewBox="0 0 16 16">
+                                                        <rect x="1" y="4" width="2" height="8"/>
+                                                        <rect x="5" y="0" width="2" height="16"/>
+                                                        <rect x="9" y="3" width="2" height="10"/>
+                                                        <rect x="13" y="5" width="2" height="6"/>
+                                                    </svg>
+                                                    <span class="track-count">13</span>
+                                                </div>
                                             </div>
                                         </div>
+                                        <button class="follow-btn cursor-pointer follow-btn-js" data-id="{{this._id}}">Follow</button>
                                     </div>
-                                    <button class="follow-btn cursor-pointer">Follow</button>
-                                </div>
-                                <div class="userBadge">
-                                    <img class="userBadge-img" src="./assets/imgs/channels4_profile.jpg" alt="">
-                                    <div class="userBadge-content">
-                                        <a href="" class="userName">Gura</a>
-                                        <div class="userBadge-stats">
-                                            <div class="userBadge-followers">
-                                                <svg class="icon" width="16" height="16" viewBox="0 0 24 24">
-                                                    <path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-4.3 0-8 2.2-8 5v3h16v-3c0-2.8-3.7-5-8-5z"/>
-                                                </svg>
-                                                <span class="followers-count">720</span>
-                                            </div>
-                                            <div class="userBadge-tracks">
-                                                 <svg class="icon" width="14" height="14" viewBox="0 0 16 16">
-                                                    <rect x="1" y="4" width="2" height="8"/>
-                                                    <rect x="5" y="0" width="2" height="16"/>
-                                                    <rect x="9" y="3" width="2" height="10"/>
-                                                    <rect x="13" y="5" width="2" height="6"/>
-                                                </svg>
-                                                <span class="track-count">13</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <button class="follow-btn cursor-pointer">Follow</button>
-                                </div>
+                                    {{/if}}
+                                {{/each}}
                             </div>
                         </div>
                         <div class="song-like-list">
@@ -198,7 +167,7 @@
                                                 
                                             </div>
                                             <div class="like-btn">
-                                                <button class="thumbnail-like-btn cursor-point">
+                                                <button class="thumbnail-like-btn cursor-point icon-like-btn-js" data-id="{{this._id}}">
                                                         <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2">
                                                             <path d="M20.8 4.6c-1.5-1.5-4-1.5-5.5 0L12 7.9 8.7 4.6c-1.5-1.5-4-1.5-5.5 0s-1.5 4 0 5.5L12 21l8.8-10.9c1.5-1.5 1.5-4 0-5.5z"/>
                                                         </svg>

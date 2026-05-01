@@ -1,0 +1,409 @@
+@import 'variables';
+
+.show {
+    display: block !important;
+}
+
+.container-profile {
+    margin: $two-edges;
+    color: $text-white;
+    font-weight: $font-weight-bold;
+}
+
+.profile-avatar {
+    width: 100%;
+    height: 270px;
+    position: relative;
+}
+
+.container-header-cropper {
+    position: absolute;
+    width: 100%;
+    height: 270px;
+}
+
+.container-header-cropper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.preview-main-header-user {
+    display: none;
+}
+
+.header-fallback {
+    height: 270px;
+}
+
+.info-user {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    z-index: 5;
+}
+
+.avatar-user {
+    // width: 270px;
+    margin: 0 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.avatar-user img{
+    width: 225px;
+    height: 225px;
+    border-radius: 50%;
+    background-color: bisque;
+    cursor: pointer;
+    object-fit: cover;
+}
+
+.avatar-fallback {
+    width: 225px;
+    height: 225px;
+    border-radius: 50%;
+    cursor: pointer;
+    object-fit: cover;
+    position: relative;
+}
+
+.first-char {
+    font-size: 130px;
+    position: absolute;
+    font-weight: normal;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.avatar-user:hover img,
+.avatar-user img:hover{
+    filter: brightness(0.7);
+}
+
+.upload-avatar-btn {
+    position: absolute;
+}
+
+.name-user {
+    margin-left: 16px;
+    background: #000;
+    font-size: 20px;
+    display: inline-block;
+    padding: 8px 12px;
+    color: azure;
+}
+
+.upload-header-btn label{
+    display: inline-block;
+    background: #000;
+    color: $text-white;
+    padding: 8px 12px;
+    font-weight: $font-weight-bold;
+    border-radius: 5px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.upload-avatar-btn label:hover,
+.upload-header-btn label:hover{
+    color: #999;
+    cursor: pointer;
+    
+}
+
+.upload-avatar-btn {
+    opacity: 0;
+    transition: 0.3s ease;
+    cursor: pointer;
+    position: absolute;
+    bottom: 50px;
+}
+
+.upload-avatar-btn label{
+    display: inline-block;
+    padding: 8px 12px;
+    background: #424242;
+    color: $text-white;
+    font-weight: $font-weight-bold;
+    border-radius: 4px;
+}
+
+.avatar-user:hover .upload-avatar-btn {
+    opacity: 1;
+}
+
+.nav-content-l ul{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    list-style-type: none;
+    margin-top: 32px;
+}
+
+.nav-content-l ul li{
+    padding: 8px 12px;
+    color: #999;
+}
+
+.nav-content-l ul li:hover{
+    padding: 8px 12px;
+    color: $text-white;
+    cursor: pointer;
+}
+
+.content-profile {
+    display: flex;
+}
+
+.content-right {
+    justify-content: center;
+    max-width: 460px;
+    flex-direction: column;
+}
+
+
+.content-l,
+.content-right {
+    flex: 1;
+    display: flex;
+}
+
+.user-stats ul{
+    display: flex;
+    list-style-type: none;
+    margin-top: 40px;
+}
+
+.user-stats li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 16px;
+    margin-right: 60px;
+    color: #999;
+}
+
+.user-stats li span{
+    font-size: 35px;
+    color: $text-white;
+}
+
+.title-content-r {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    margin-top: 20px;
+}
+
+.song-like-list {
+    margin-top: 16px;
+    position: relative;
+}
+
+.song-like-list h2 {
+    display: inline;
+}
+
+.view-all-text {
+    padding-top: 3px;
+    position: absolute;
+    font-size: 12px;
+    right: 0;
+    color: #999;
+    text-decoration: none;
+}
+
+.view-all-text:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+// form avatar ==============================================================
+
+.overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.37);
+    z-index: 20;
+}
+
+.form-avatar {
+    display: block;
+    width: 600px;
+    height: 600px;
+    background: #000;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 4px;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    color: $text-white;
+}
+
+.preview-container {
+    // padding:12px 22px;
+    font-weight: $font-weight-bold;
+    display: flex;
+    font-weight: bold;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+
+.header-preview-container h1,
+.preview-container h1 {
+    font-weight: $font-weight-bold;
+    font-size: 28px;
+    margin-bottom: 12px;
+}
+
+.header-preview-container p,
+.preview-container p {
+    font-size: 14px;
+    margin-bottom: 12px;
+}
+
+.suggest-form-avatar {
+    padding: 12px 0px 0px 0px;;
+}
+
+.preview-header-image,
+.preview-image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    cursor: grab;
+}
+
+.footer-form-avatar {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+    width: 450px;
+    height: 450px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.zoom-image {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    margin-left: 20px;
+}
+
+.zoom-image button {
+    padding: 8px 20px;
+    background: #424242;
+    color: $text-white;
+    font-weight: $font-weight-bold;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-submit {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    margin-right: 20px;
+}
+
+.btn-submit button {
+    padding: 10px 16px;
+    background: #424242;
+    color: $text-white;
+    font-weight: $font-weight-bold;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.zoom-image button:hover,
+.btn-submit button:hover {
+    filter: brightness(0.6);
+}
+
+.zoom-slider {
+    margin-right: 8px;
+    margin-left: 8px;
+}
+
+.btn-less {
+    font-size: 14px;
+    padding-left: 22px !important;
+    padding-right: 22px !important;
+}
+
+.save-avatar-btn,
+.save-header-btn {
+    background: #fff !important;
+    color: #000 !important;
+    margin-left: 24px;
+}
+
+.header-preview-container {
+    font-weight: bold;
+    display: flex;
+    font-weight: bold;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 12px 26px;
+}
+
+.form-header-cropper {
+    width: 1100px;
+    height: 350px;
+    background: #000;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 4px;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    color: $text-white;
+}
+
+.header-image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+    width: 950px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.footer-header-cropper {
+    display: flex;
+    width: 100%;
+    margin-top: 12px;
+}

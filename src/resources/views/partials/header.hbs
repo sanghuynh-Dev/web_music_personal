@@ -16,10 +16,26 @@
     <a href="/upload">Upload</a>
 </div>
 <div class="nav-user cursor-pointer nav-user-js">
-    <img class="user-avatar" src="https://res.cloudinary.com/dqynaodv1/image/upload/v1776107586/maxresdefault_1_ck3pll.jpg" alt="">
+    {{!-- {{#if user.avatar.url}}
+    <img class="user-avatar" src="{{user.avatar.url}}" alt="">
+    {{/if}} --}}
+    {{#if user.avatar.url}}
+        <img class="header-avatar-user" src="{{user.avatar.url}}" alt="">
+    {{else}}
+        {{!-- {{log user.username}} --}}
+        <img class="preview-header-avatar-user" src="{{user.avatar.url}}" alt="">
+
+        <div class="header-avatar-fallback"
+            style="background: {{avatarColor user.username}};">
+            <h1 class="first-char-header">
+                {{firstChar user.username}}
+            </h1>
+        </div>
+    {{/if}}
     <i class="ti-angle-down"></i>
     <div class="option-user option-user-js">
         <ul>
+            {{#if userID}}
             <li>
                 <div class="icon">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -38,7 +54,7 @@
                         <path d="M20.8 4.6c-1.5-1.5-4-1.5-5.5 0L12 7.9 8.7 4.6c-1.5-1.5-4-1.5-5.5 0s-1.5 4 0 5.5L12 21l8.8-10.9c1.5-1.5 1.5-4 0-5.5z"/>
                     </svg>
                 </div>
-                <a href="/logout">Likes</a>
+                <a href="/you/likes">Likes</a>
             </li>
             <li>
                 <div class="icon">
@@ -53,6 +69,7 @@
                 </div>
                 <a href="/logout">Following</a>
             </li>
+            {{/if}}
             <li>
                 <div class="icon">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -74,6 +91,7 @@
     </div>
 </div>
 
+<script type="module" src="/javascripts/views/profile.js"></script>
 <script>
     const optionUser = document.querySelector('.option-user-js');
     const navUser = document.querySelector('.nav-user-js');
@@ -81,5 +99,12 @@
     navUser.addEventListener('click', function() {
         optionUser.classList.toggle('active');
         this.classList.toggle('active');
+    })
+
+    document.addEventListener('click', function(e) {
+        if(!optionUser.contains(e.target) && !navUser.contains(e.target)){
+            optionUser.classList.remove('active');
+            navUser.classList.remove('active');
+        }
     })
 </script>

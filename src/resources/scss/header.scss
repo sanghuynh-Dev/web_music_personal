@@ -1,5 +1,46 @@
 @import "variables";
 
+.nav-user {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin-left: 16px;
+}
+
+.nav-user i {
+    color: var(--color-Gray);
+    margin-left: 12px;
+}
+
+.nav-user:hover i {
+    color: #fff;
+}
+
+.nav-user img {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+}
+
+.header-avatar-fallback {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    cursor: pointer;
+    object-fit: cover;
+    position: relative;
+}
+
+.first-char-header {
+    font-size: 20px;
+    position: absolute;
+    color: $text-white;
+    font-weight: normal;
+    top: 56%;
+    left: 50%;
+    transform: translate(-50%, -49%);
+}
+
 .option-user {
     position: absolute;
     top: 42px;
@@ -9,7 +50,6 @@
     background: #000;
     display: none;
     align-items: center;
-    height: 165px;
     z-index: 10;
 }
 
@@ -19,6 +59,10 @@
 
 .option-user.active{
     display: flex;
+}
+
+.option-user ul {
+    padding: 8px 0;
 }
 
 .option-user li {

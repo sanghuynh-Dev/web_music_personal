@@ -1,79 +1,39 @@
 // import { render } from 'sass';
 import { songs } from './songs.js';
+import { onLoadImage } from './views/profile.js';
 console.log('app.js loaded');
-// const songList = document.querySelector('.track');
 
-// songs.forEach((song,index) => {
-//     const html = `
-//          <div class="song-card js-song-card" data-index='${index}'>
-//                 <div class="container-thumbnail">
-//                     <a href=""><img src="${song.image}" alt="" class="thumbnail-song"></a>
-//                     <button class="thumbnail-play-btn cursor-pointer js-play-btn">
-//                         <svg class="icon-play" width="40" height="40" viewBox="0 0 24 24">
-//                             <path d="M8 5v14l11-7z"></path>
-//                         </svg>
+const isProfilePage = window.location.pathname.includes('profile');
+const isHomePage = window.location.pathname.includes('home');
+const userBadge = document.querySelectorAll('.user-badge-js');
 
-//                         <svg class="icon-pause"  width="40" height="40" viewBox="0 0 24 24">
-//                             <path d="M6 5h4v14H6zm8 0h4v14h-4z"></path>
-//                         </svg>
-//                     </button>
-                    
-//                 </div>
-//                 <a href="" class="song-name shows-3-dots">${song.name}</a>
-//                 <p class="artist-name shows-3-dots">${song.artist}</p>
-//                 <audio class="js-audio"  src="${song.src}" preload="metadata"></audio>
-//         </div>
-//         `;
-//         songList.innerHTML += html;
-// });
+userBadge.forEach(userBadge => {
+    const mainAvatarUser = userBadge.querySelector('.main-avatar-user');
+    const previewAvatarUser = userBadge.querySelector('.preview-main-avatar-user');
+    const avatarFallback = userBadge.querySelector('.avatar-fallback');
+
+    onLoadImage(mainAvatarUser, previewAvatarUser, avatarFallback);
+})
+
 
 const iconLikeBtns = document.querySelectorAll('.icon-like-btn');
-console.log(iconLikeBtns);
+// console.log(iconLikeBtns);
 if(iconLikeBtns) {
     iconLikeBtns.forEach(iconLikeBtn => {
         iconLikeBtn.addEventListener('click', async (e) => {
-            const btn = e.target.closest('.icon-like-btn');
-            const songID = btn.dataset.id;
-            console.log(songID);
-    
-            const res = await fetch(`/you/liked/${songID}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                credentials: 'include',
-                body: JSON.stringify({
-                    target: songID,
-                    targetType: 'music',
-                })
-            });
-            const data = await res.json();
-            let allSongLiked = data.allSongLiked;
-            const likedList = document.querySelector('.list-liked');
-            const countLiked = document.querySelector('.title-liked-js');
-            const countLimitLiked = likedList.querySelectorAll('.song-card');
-            console.log(allSongLiked);
-    
-            if(data.liked) {
-                btn.classList.add('liked');
-                countLiked.innerHTML = data.count + ' likes';
-                if(countLimitLiked.length >= 3) return;
-                renderTop3(allSongLiked, songID, likedList);
-            } else {
-                btn.classList.remove('liked');
-                const item = likedList.querySelector(`[data-id="${songID}"]`);
-                if(item) {
-                    item.remove();
-                }
-                allSongLiked = allSongLiked.filter(song => song._id !== songID);
-                renderTop3(allSongLiked, songID, likedList);
-                countLiked.innerHTML = data.count + ' likes';   
-            }
-            console.log(data);
-            
+             if(isProfilePage || isHomePage) await eventLikeBtn(e);
         })
     })
 }
+const likedList = document.querySelector('.list-liked');
+
+likedList.addEventListener('click', async (e) => {
+    const btn = e.target.closest('.icon-like-btn-js');
+    console.log(btn);
+    if (!btn) return;
+
+    await eventLikeBtn(e);
+});
 
 
 function renderTop3(allSongLiked, songID, likedList) {
@@ -83,11 +43,71 @@ function renderTop3(allSongLiked, songID, likedList) {
     })
 }
 
+async function eventLikeBtn(event) {
+    const btn = event.target.closest('.icon-like-btn-js');
+    console.log(btn);
+    const songID = btn.dataset.id;
+    console.log(songID);
+
+    const res = await fetch(`/you/liked/${songID}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        credentials: 'include',
+        body: JSON.stringify({
+            target: songID,
+            targetType: 'music',
+        })
+    });
+    const data = await res.json();
+    let allSongLiked = data.allSongLiked;
+    const likedList = document.querySelector('.list-liked');
+    const countLiked = document.querySelector('.title-liked-js');
+    const countLimitLiked = likedList.querySelectorAll('.song-card');
+    console.log(allSongLiked);
+
+    if(data.liked) {
+        changeColorIconLikeBtn(songID, data.liked);
+        if (countLiked) countLiked.innerHTML = data.count + ' likes';
+        if(countLimitLiked.length >= 3) return;
+        renderTop3(allSongLiked, songID, likedList);
+    } else {
+        changeColorIconLikeBtn(songID, data.liked);
+        const item = likedList.querySelector(`[data-id="${songID}"]`);
+        if(item) {
+            item.remove();
+        }
+        allSongLiked =  await allSongLiked.filter(song => song._id !== songID);
+        console.log(allSongLiked);
+        renderTop3(allSongLiked, songID, likedList);
+        if (countLiked) countLiked.innerHTML = data.count + ' likes';  
+    }
+    console.log(data);
+}
+
+function changeColorIconLikeBtn( songID , liked) {
+    const iconLikeBtns = document.querySelectorAll('.icon-like-btn');
+
+    for(const iconLikeBtn of iconLikeBtns) {
+        const songId = iconLikeBtn.dataset.id;
+        if(songId === songID && liked) {
+            iconLikeBtn.classList.add('liked');
+            break;
+        } else if (songId === songID && !liked){
+            iconLikeBtn.classList.remove('liked');
+            break;
+        }
+    }
+}
+
 function addInnerSongLike(infoSongCurrent, songID, likedList) {
     const item = document.createElement('div');
     item.className = 'song-card js-song-card';
     item.dataset.id = songID;
-    item.innerHTML = `<div class="container-thumbnail">
+
+    if(isHomePage || isProfilePage) {
+       item.innerHTML = `<div class="container-thumbnail">
                             <div class="control-btn">
                                 <img src="${infoSongCurrent.image}" alt="" class="thumbnail-song">
                                 <button class="thumbnail-play-btn cursor-pointer js-play-btn">
@@ -124,14 +144,63 @@ function addInnerSongLike(infoSongCurrent, songID, likedList) {
                             
                         </div>
                         <div class="like-btn">
-                            <button class="thumbnail-like-btn cursor-point">
+                            <button class="thumbnail-like-btn cursor-point icon-like-btn-js" data-id="${infoSongCurrent._id}">
                                     <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2">
                                         <path d="M20.8 4.6c-1.5-1.5-4-1.5-5.5 0L12 7.9 8.7 4.6c-1.5-1.5-4-1.5-5.5 0s-1.5 4 0 5.5L12 21l8.8-10.9c1.5-1.5 1.5-4 0-5.5z"/>
                                     </svg>
                             </button>
                         </div>`; 
+    } else {
+        item.innerHTML = `<div class="container-thumbnail">
+                            <a href=""><img src="${infoSongCurrent.image}" alt="" class="thumbnail-song"></a>
+                            <button class="thumbnail-play-btn cursor-pointer js-play-btn">
+                                <svg class="icon-play" width="40" height="40" viewBox="0 0 24 24">
+                                    <path d="M8 5v14l11-7z"></path>
+                                </svg>
+
+                                <svg class="icon-pause"  width="40" height="40" viewBox="0 0 24 24">
+                                    <path d="M6 5h4v14H6zm8 0h4v14h-4z"></path>
+                                </svg>
+                            </button>
+                            <button class="icon-like-btn cursor-pointer icon-like-btn-js {{#if liked}} liked {{/if}}" data-id="${infoSongCurrent._id}">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2">
+                                    <path d="M20.8 4.6c-1.5-1.5-4-1.5-5.5 0L12 7.9 8.7 4.6c-1.5-1.5-4-1.5-5.5 0s-1.5 4 0 5.5L12 21l8.8-10.9c1.5-1.5 1.5-4 0-5.5z"/>
+                                </svg>
+                            </button>
+                            
+                        </div>
+                        <a href="" class="song-name shows-3-dots">${infoSongCurrent.song_name}</a>
+                        <p class="artist-name shows-3-dots">${infoSongCurrent.artist}</p>
+                        <audio class="js-audio"  src="${infoSongCurrent.file}" preload="metadata"></audio>
+                       `; 
+    }
+    
     likedList.appendChild(item);
 }
+
+// follow
+
+const followBtns = document.querySelectorAll('.follow-btn-js');
+console.log(followBtns);
+followBtns.forEach(followBtn => {
+    followBtn.addEventListener('click', async (e) => {
+        e.preventDefault();
+        const userID = followBtn.dataset.id;
+        const res = await fetch(`/you/followed/${userID}?_method=PATCH`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            credentials: 'include',
+            body: JSON.stringify({
+                target: userID,
+                targetType: 'artist',
+            })
+        });
+        const data = await res.json();
+        console.log(data);
+    })
+})
 
 // <button class="thumbnail-play-btn js-play-btn"><i class="ti-control-play icon-play"></i></button>
 console.log(songs);

@@ -1,7 +1,9 @@
 const Music = require('../models/Music');
 const Likes = require('../models/Likes');
-const { isLiked } = require('../../services/likeService');
-const { mutipleMongooseToObject } = require('../../util/mongoose');
+const User = require('../models/User');
+const { isLiked , liked } = require('../../services/likeService');
+const { mutipleMongooseToObject,mongooseToObject } = require('../../util/mongoose');
+const { get } = require('mongoose');
 
 
 class Homecontroller {
@@ -9,25 +11,29 @@ class Homecontroller {
         Music.find({})
             .then(async (musics) => {
                 const userId = req.session.userID;
+                const users = await User.find({ _id: { $ne: req.session.userID} });
                 const newMusics = await isLiked(userId, musics);
                 const likedCount = await Likes.countDocuments({ user: userId });
 
                 res.render('home', {
                     musics: newMusics,
+                    users: mutipleMongooseToObject(users),
                     likedMusics: await liked(userId),
                     count: likedCount
                 });
             })
             .catch(next);
     }
+
+    
 }
 
-async function liked(userId) {
-    const likes = await Likes.find({ user: userId })
-    const musicIds = likes.map(like => like.target);
-    const musics = await Music.find({ _id: { $in: musicIds } });
-    return await isLiked(userId, musics);
-}
+// async function liked(userId) {
+//     const likes = await Likes.find({ user: userId })
+//     const musicIds = likes.map(like => like.target);
+//     const musics = await Music.find({ _id: { $in: musicIds } });
+//     return await isLiked(userId, musics);
+// }
 
 // async function isLiked(userId, musics) {
 //     const likes = await Likes.find({ user: userId });
@@ -37,5 +43,8 @@ async function liked(userId) {
 //         liked: likedSongIds.includes(song._id.toString())
 //     }));
 // }
-
+async function getAllUsers(req) {
+    const users = await User.find({ _id: { $ne: req.session.userID} });
+    return users;
+}
 module.exports = new Homecontroller();

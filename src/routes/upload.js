@@ -1,14 +1,14 @@
 var express = require('express');
 var router = express.Router();
 
-const upload = require('../app/models/Upload');
+const cloudinary = require('../app/models/Cloudinary');
 const uploadController = require('../app/controllers/UploadController');
 
 router.get('/', uploadController.upload);
 router.post(
     '/uploaded',
     (req, res, next) => {
-    upload.fields([
+    cloudinary.fields([
         { name: 'image', maxCount: 1 },
         { name: 'file', maxCount: 1 }
     ])(req, res, function (err) {
