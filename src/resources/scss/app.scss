@@ -369,6 +369,7 @@ body {
     /* justify-content: center; */
     align-items: center;
     margin-bottom: 20px;
+    position: relative;
 }
 
 .avatar-fallback,
@@ -440,6 +441,15 @@ body {
     border-radius: 4px;
     border: none;
     font-weight: var(--font-weight-bold);
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translate(0px, -50%);
+}
+
+.following {
+    background: #303030;
+    color: $text-white;
 }
 
 .userBadge .follow-btn:hover {

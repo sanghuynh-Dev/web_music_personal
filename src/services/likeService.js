@@ -1,20 +1,26 @@
 const Likes = require('../app/models/Likes');
 const Music = require('../app/models/Music');
 
-async function isLiked(userId, musics) {
-    const likes = await Likes.find({ user: userId });
-    const likedSongIds = likes.map(like => like.target.toString());
+async function isLiked(userId) {
+
+    const musics = await Music.find({}).lean();
+
+    const likedDocs = await Likes.find({ user: userId }).lean();
+    const likedSet = new Set(
+        likedDocs.map(like => like.target.toString())
+    );
     return musics.map(song => ({
-        ...song._doc,
-        liked: likedSongIds.includes(song._id.toString()),
+        ...song,
+        liked: likedSet.has(song._id.toString()),
     }));
 }
 
-async function liked(userId) {
+
+async function songLiked(userId) {
     const likes = await Likes.find({ user: userId })
     const musicIds = likes.map(like => like.target);
-    const musics = await Music.find({ _id: { $in: musicIds } });
-    return await isLiked(userId, musics);
+    const musics = await Music.find({ _id: { $in: musicIds } }).lean();
+    return musics;
 }
 
-module.exports = { isLiked , liked };
+module.exports = { isLiked , songLiked };

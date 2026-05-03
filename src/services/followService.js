@@ -40,4 +40,18 @@ module.exports = {
         
         await User.updateOne(filter, update);
     },
+
+    isFollowing: async function (userID) {
+        const currentUser = await User.findById(userID).lean(); 
+        const users = await User.find({ _id: { $ne: userID} }).lean();
+
+        const followingSet = new Set(
+            currentUser?.following.map(id => id.toString())
+        );
+
+        return users.map(user => ({
+            ...user,
+            followed: followingSet.has(user._id.toString())
+        }));
+    },
 }

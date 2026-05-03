@@ -2,7 +2,7 @@ const Music = require('../models/Music');
 const Likes = require('../models/Likes');
 const User = require('../models/User');
 const { following , followers , unFollowing , unFollowers } = require('../../services/followService');
-const { isLiked } = require('../../services/likeService');
+const { isLiked , songLiked } = require('../../services/likeService');
 const { mutipleMongooseToObject } = require('../../util/mongoose');
 
 
@@ -25,9 +25,9 @@ class YouController {
     likes(req, res, next) {
         Likes.find({ user: req.session.userID })
             .then( async (likes) => {
-                const musicIds = likes.map(like => like.target);
-                const musics = await Music.find({ _id: { $in: musicIds } });
-                const newMusics = await isLiked(req.session.userID, musics);
+                // const musicIds = likes.map(like => like.target);
+                // const musics = await Music.find({ _id: { $in: musicIds } });
+                const newMusics = await songLiked(req.session.userID);
                 const likedCount = await Likes.countDocuments({ user: req.session.userID });
 
                 res.render('librarys/likes', {
@@ -69,10 +69,10 @@ class YouController {
     }
 
     async followed(req, res, next) {
-        try {
+        if(req.body.action === 'follow') {
             const userCurrent = req.session.userID;     // người follow
             const userTarget = req.params.id;  
-
+            console.log("userTarget:", req.params.id);
             const result = await following(userCurrent, userTarget);
 
             if(result.modifiedCount === 1) {
@@ -80,26 +80,31 @@ class YouController {
 
                 await followers(userCurrent, userTarget);
             }
-        } catch (error) {
-            throw error;
-        }
-       
-    };
 
-    async unFollow(req, res, next) {
-        try {
+            const userTargetCountFollower = await User.findById(userTarget).lean();
+            res.json({ success: true , count: userTargetCountFollower.followersCount});
+        }
+       if(req.body.action === 'unfollow') {
             const userCurrent = req.session.userID;     // người follow
             const userTarget = req.params.id;  
-
+            console.log("userTarget:", req.params.id);
             const result = await unFollowing(userCurrent, userTarget);
 
             if(result.modifiedCount === 1) {
                 await unFollowers(userCurrent, userTarget);
             }
-        } catch (error) {
-            throw error;
+            const userTargetCountFollower = await User.findById(userTarget).lean();
+            res.json({ success: true ,count: userTargetCountFollower.followersCount });
         }
-    }
+    };
+
+    // async unFollow(req, res, next) {
+    //     try {
+            
+    //     } catch (error) {
+    //         throw error;
+    //     }
+    // }
 }
 
 // async function isLiked(userId, musics) {
