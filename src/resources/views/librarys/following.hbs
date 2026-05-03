@@ -14,23 +14,23 @@
     <div class="library-content">
         <div class="following-container">
             <h1 class="title-text">Hear what the people you follow have posted:</h1>
-            <div class="list-following">
+            <div class="list-following list-user-js">
                 {{#each followings}}
-                    <div class="following-item">
+                    <div class="following-item user-badge-js">
                         {{#if this.avatar.url}}
-                            <img class="header-avatar-user" src="{{this.avatar.url}}" alt="">
+                            <img class="main-avatar-user" src="{{this.avatar.url}}" alt="">
                         {{else}}
                             {{!-- {{log user.username}} --}}
-                            <img class="preview-header-avatar-user" src="{{this.avatar.url}}" alt="">
-
-                            <div class="header-avatar-fallback"
+                            <div class="avatar-fallback"
                                 style="background: {{avatarColor this.username}};">
-                                <h1 class="first-char-header">
+                                <h1 class="first-char">
                                     {{firstChar this.username}}
                                 </h1>
                             </div>
+                            <img class="preview-main-avatar-user" src="{{this.avatar.url}}" alt="" style="display: none;">
+
                         {{/if}}
-                        <div class="following-info">
+                        <div class="following-info following-info-js">
                             <div class="user-name">
                                 <a href="">{{this.username}}</a>
                             </div>
@@ -44,10 +44,10 @@
                                         <path d="M4 20c0-4 4-6 8-6s8 2 8 6"/>
                                     </svg>
                                 </div>
-                                <span>{{this.followersCount}}</span>
+                                <span class="follower-count-js">{{this.followersCount}}</span>
                                 <p>Followers</p>
                             </div>
-                            <button class="follow-btn">following</button>
+                            <button class="follow-btn follow-btn-js" data-following="true" data-id="{{this._id}}">following</button>
                         </div>
                     </div>
                 {{/each}}

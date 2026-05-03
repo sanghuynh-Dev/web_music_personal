@@ -23,7 +23,7 @@
         <img class="header-avatar-user" src="{{user.avatar.url}}" alt="">
     {{else}}
         {{!-- {{log user.username}} --}}
-        <img class="preview-header-avatar-user" src="{{user.avatar.url}}" alt="">
+        <img class="preview-header-avatar-user" src="{{user.avatar.url}}" alt="" style="display: none;">
 
         <div class="header-avatar-fallback"
             style="background: {{avatarColor user.username}};">
@@ -67,7 +67,7 @@
                         <path d="M15 14l2 2 4-4"/>
                     </svg>
                 </div>
-                <a href="/logout">Following</a>
+                <a href="/you/following">Following</a>
             </li>
             {{/if}}
             <li>

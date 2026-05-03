@@ -42,10 +42,10 @@ let posX = 0, posY = 0;
 let activeTarget = null;
 // start call function=====
 
+onLoadImage(headerAvatarUser, previewHeaderAvatarUser, headerAvatarFallback);
 if (isProfilePage) {
     onLoadImage(mainAvatarUser, previewAvatarUser, avatarFallback);
     onLoadImage(mainHeaderUser, previewHeaderUser, headerFallback);
-    onLoadImage(headerAvatarUser, previewHeaderAvatarUser, headerAvatarFallback);
 }
 if (isHomePage) onLoadImage(headerAvatarUser, previewHeaderAvatarUser, headerAvatarFallback);
 
@@ -130,7 +130,7 @@ function updateAvatarTransform() {
 }
 
 //SAVE
-saveAvatarBtn?.addEventListener('click', (e) => {
+saveAvatarBtn?.addEventListener('click', async (e) => {
     e.preventDefault();
     const canvas = document.createElement('canvas');
     const size = 450;
@@ -148,13 +148,13 @@ saveAvatarBtn?.addEventListener('click', (e) => {
 
     ctx.drawImage(previewImage, dx, dy, imgW, imgH);
 
-    canvas.toBlob((blob) => {
+    canvas.toBlob( async (blob) => {
         const formData = new FormData();
         formData.append('image', blob);
         console.log(formData);
         changeAvatarAfterUpload(blob, mainAvatarUser, previewAvatarUser, avatarFallback);
         changeAvatarAfterUpload(blob, headerAvatarUser, previewHeaderAvatarUser, headerAvatarFallback);
-        fetch('/profile/update-avatar?_method=PATCH', {
+        await fetch('/profile/update-avatar?_method=PATCH', {
             method: 'POST',
             body: formData
         })
@@ -258,7 +258,7 @@ function updateHeaderTransform() {
 
 
 //SAVE
-saveHeaderBtn?.addEventListener('click', (e) => {
+saveHeaderBtn?.addEventListener('click', async (e) => {
     e.preventDefault();
     const canvas = document.createElement('canvas');
 
@@ -275,12 +275,12 @@ saveHeaderBtn?.addEventListener('click', (e) => {
 
     ctx.drawImage(previewHeaderImage, dx, dy, imgW, imgH);
 
-    canvas.toBlob((blob) => {
+    canvas.toBlob(async (blob) => {
         const formData = new FormData();
         formData.append('image', blob);
         console.log(formData);
         changeAvatarAfterUpload(blob, mainHeaderUser, previewHeaderUser, headerFallback);
-        fetch('/profile/update-header?_method=PATCH', {
+        await fetch('/profile/update-header?_method=PATCH', {
             method: 'POST',
             body: formData
         })

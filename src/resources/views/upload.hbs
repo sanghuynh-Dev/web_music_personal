@@ -53,6 +53,7 @@
     const inputImage = document.getElementById('inputImage');
     const inputFile = document.getElementById('fileInput');
     const songName = document.getElementById('song_name');
+    const artist = document.getElementById('artist');
     const preview = document.getElementById('preview');
     
 
@@ -64,6 +65,8 @@
         musicUploadForm.style.display = 'block';
 
         songName.value = file.name.replace(/\.[^/.]+$/, '');
+        const username = "{{user.username}}";
+        artist.value = username.replace(/\.[^/.]+$/, '');
     })
 
     inputImage.addEventListener('change', function() {
@@ -73,8 +76,6 @@
         preview.src = image;
         imageUploadForm.style.display = 'none';
         previewImage.style.display = 'flex';
-        console.log(inputFileForm.files.length);
-        console.log(inputImage.files.length);
     })
 
     iconTrash.addEventListener('click', function() {

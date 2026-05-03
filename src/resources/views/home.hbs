@@ -80,7 +80,7 @@
                     <div class="container-content-r">
                         <div class="user-follow-list">
                             <h2 class="title-content-r">Artists you should follow</h2>
-                            <div class="list-user">
+                            <div class="list-user list-user-js">
                                 {{#each users}}
                                     {{#if (limited @index 3)}}
                                     <div class="userBadge user-badge-js">
@@ -89,7 +89,7 @@
                                             <img class="main-avatar-user" src="{{this.avatar.url}}" alt="">
                                         {{else}}
                                             {{log this.username}}
-                                            <img class="preview-main-avatar-user" src="{{this.avatar.url}}" alt="">
+                                            <img class="preview-main-avatar-user" src="{{this.avatar.url}}" alt="" style="display: none;">
 
                                             <div class="avatar-fallback"
                                                 style="background-color: {{avatarColor this.username}};">
@@ -98,14 +98,14 @@
                                                 </h1>
                                             </div>
                                         {{/if}}
-                                        <div class="userBadge-content">
+                                        <div class="userBadge-content following-info-js">
                                             <a href="" class="userName">{{this.username}}</a>
                                             <div class="userBadge-stats">
                                                 <div class="userBadge-followers">
                                                     <svg class="icon" width="16" height="16" viewBox="0 0 24 24">
                                                         <path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-4.3 0-8 2.2-8 5v3h16v-3c0-2.8-3.7-5-8-5z"/>
                                                     </svg>
-                                                    <span class="followers-count">720</span>
+                                                    <span class="followers-count follower-count-js">{{this.followersCount}}</span>
                                                 </div>
                                                 <div class="userBadge-tracks">
                                                     <svg class="icon" width="14" height="14" viewBox="0 0 16 16">
@@ -117,15 +117,15 @@
                                                     <span class="track-count">13</span>
                                                 </div>
                                             </div>
+                                            <button class="follow-btn cursor-pointer follow-btn-js" data-id="{{this._id}}" data-following="{{this.followed}}">Follow</button>
                                         </div>
-                                        <button class="follow-btn cursor-pointer follow-btn-js" data-id="{{this._id}}">Follow</button>
                                     </div>
                                     {{/if}}
                                 {{/each}}
                             </div>
                         </div>
                         <div class="song-like-list">
-                            <h2 class="title-content-r title-liked-js">{{ count }} likes</h2>
+                            <h2 class="title-content-r title-liked-js">{{ countLiked }} likes</h2>
                             <div class="list-liked">
                                 {{#each likedMusics}}
                                     {{#if (limited @index 3)}}

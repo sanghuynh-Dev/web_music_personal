@@ -3,7 +3,7 @@ const Likes = require('../models/Likes');
 const User = require('../models/User');
 
 const cloudinary = require('../../config/cloudinary');
-const { isLiked ,liked } = require('../../services/likeService');
+const { isLiked , songLiked } = require('../../services/likeService');
 const { mongooseToObject } = require('../../util/mongoose');
 
 
@@ -14,7 +14,7 @@ class Profilecontroller {
         const likedCount = await Likes.countDocuments({ user: userId });
         res.render('profile', {
             // user: mongooseToObject(user),
-            likedMusics: await liked(userId),
+            likedMusics: await songLiked(userId),
             count: likedCount,
         });
    }

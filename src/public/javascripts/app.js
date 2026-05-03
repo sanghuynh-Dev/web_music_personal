@@ -7,6 +7,11 @@ const isProfilePage = window.location.pathname.includes('profile');
 const isHomePage = window.location.pathname.includes('home');
 const userBadge = document.querySelectorAll('.user-badge-js');
 
+// start call function
+changeFollowBtnOnLoad();
+// end call function
+
+
 userBadge.forEach(userBadge => {
     const mainAvatarUser = userBadge.querySelector('.main-avatar-user');
     const previewAvatarUser = userBadge.querySelector('.preview-main-avatar-user');
@@ -27,7 +32,7 @@ if(iconLikeBtns) {
 }
 const likedList = document.querySelector('.list-liked');
 
-likedList.addEventListener('click', async (e) => {
+likedList?.addEventListener('click', async (e) => {
     const btn = e.target.closest('.icon-like-btn-js');
     console.log(btn);
     if (!btn) return;
@@ -180,27 +185,54 @@ function addInnerSongLike(infoSongCurrent, songID, likedList) {
 
 // follow
 
-const followBtns = document.querySelectorAll('.follow-btn-js');
-console.log(followBtns);
-followBtns.forEach(followBtn => {
-    followBtn.addEventListener('click', async (e) => {
-        e.preventDefault();
-        const userID = followBtn.dataset.id;
-        const res = await fetch(`/you/followed/${userID}?_method=PATCH`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            credentials: 'include',
-            body: JSON.stringify({
-                target: userID,
-                targetType: 'artist',
-            })
-        });
-        const data = await res.json();
-        console.log(data);
-    })
+const listUsers = document.querySelector('.list-user-js');
+
+listUsers.addEventListener('click', async (e) => {
+    e.preventDefault();
+    const btn = e.target.closest('.follow-btn-js');
+    if(!btn) return;
+    eventFollowBtn(btn);
 })
+
+async function eventFollowBtn(btn) {
+    const container = btn.closest('.following-info-js');
+    const countFollowers = container?.querySelector('.follower-count-js');
+    const userID = btn.dataset.id;
+    let isFollowing = btn.dataset.following === 'true';
+
+    const res = await fetch(`/you/followed/${userID}?_method=PATCH`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        credentials: 'include',
+        body: JSON.stringify({
+            target: userID,
+            targetType: 'artist',
+            action: isFollowing ? 'unfollow' : 'follow'
+        })
+    });
+    const data = await res.json();
+    if (data.success) {
+        isFollowing = !isFollowing;
+
+        btn.dataset.following = isFollowing;
+        if(countFollowers) countFollowers.textContent = data.count;
+        btn.textContent = isFollowing ? 'Following' : 'Follow';
+        btn.classList.toggle('following', isFollowing);
+    }
+    console.log(data);
+}
+
+function changeFollowBtnOnLoad() {
+    const followBtns = document.querySelectorAll('.follow-btn-js');
+    followBtns.forEach(followBtn => {
+        const isFollowing = followBtn.dataset.following === 'true';
+        followBtn.textContent = isFollowing ? 'Following' : 'Follow';
+        followBtn.classList.toggle('following', isFollowing);
+        
+    })
+}
 
 // <button class="thumbnail-play-btn js-play-btn"><i class="ti-control-play icon-play"></i></button>
 console.log(songs);
